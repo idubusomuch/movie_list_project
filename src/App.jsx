@@ -1,4 +1,4 @@
-import './app.css'
+import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { useSupabaseAuth } from './supabase'
 import { useEffect } from 'react'
