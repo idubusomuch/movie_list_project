@@ -5,8 +5,7 @@ import useFetch from '@hooks/useFetch'
 export function MovieDetail() {
   const params = useParams()
   const movieId = params.id
-
-  const { movie: movieData, loading } = useFetch({
+  const { data: movieData, loading } = useFetch({
     url: `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
   })
 
