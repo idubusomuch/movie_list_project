@@ -10,8 +10,8 @@ export default function Mypage() {
   console.log(user)
   return (
     <>
-      <div className='min-h-screen bg-gray-100 py-8 px-4'>
-        <div className='max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6'>
+      <div className='h-full py-8 px-4'>
+        <div className='max-w-xl mx-auto bg-skin shadow-xl rounded-lg p-6'>
           <h1 className='text-3xl font-bold text-center mb-6'>마이페이지</h1>
           <div>
             <img
