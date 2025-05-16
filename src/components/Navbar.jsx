@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import useDebounce from '@hooks/useDebounce'
 import { useUser } from '../context/userContext'
 import { useSupabaseAuth } from '../supabase'
+import DarkModeButton from './DarkModeButton'
+import useDarkMode from '@hooks/useDarkMode'
 
 export default function Navbar() {
   const [inputValue, setInputValue] = useState('')
@@ -29,34 +31,38 @@ export default function Navbar() {
     navigate('/')
   }
 
+  // 다크모드
+  const [isDark, setIsDark] = useDarkMode()
+
   return (
     <>
       <header className='w-full bg-black text-white'>
         <div
           className={`flex justify-between mx-auto w-full max-w-[1200px] py-3 ${
             isOpen ? 'flex-col items-start' : ''
-          } sm:flex-row sm:items-center`}
+          } md:flex-row md:items-center`}
         >
           <Link to={'/'}>
             <h2 className='font-extrabold text-3xl px-4'>OZ MOVIE</h2>
           </Link>
           <input
-            className='text-3xl sm:hidden cursor-pointer absolute right-3 top-2'
+            className='text-3xl md:hidden cursor-pointer absolute right-3 top-2'
             type='button'
             value='☰'
             onClick={() => setIsOpen((prev) => !prev)}
           />
-          <div className={`${isOpen ? 'mobile-toggleMenu' : 'hidden'} sm:flex sm:items-center`}>
-            <div className='flex w-full sm:w-fit sm:mx-6 border-b-[1px] text-white '>
+          <div className={`${isOpen ? 'mobile-toggleMenu' : 'hidden'} md:flex md:items-center`}>
+            <div className='flex w-full md:w-fit md:mx-6 border-b-[1px] text-white '>
               <input
                 type='text'
                 placeholder='영화 제목을 검색해보세요.'
-                className='flex-1 focus:outline-none px-4 py-1 bg-transparent sm:rounded-md'
+                className='flex-1 focus:outline-none px-4 py-1 bg-transparent md:rounded-md'
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <span className='text-3xl cursor-pointer px-4 py-1'>⌕</span>
             </div>
-            <div className='space-x-5 p-4 text-right sm:mr-4 sm:p-0'>
+            <div className='flex justify-end items-center space-x-5 p-4 text-right md:mr-4 md:p-0'>
+              <DarkModeButton isDark={isDark} setIsDark={setIsDark} />
               {user ? (
                 // 로그인 상태일 때
                 <div className='flex justify-end items-center relative'>
@@ -72,7 +78,7 @@ export default function Navbar() {
                   <div
                     className={`${
                       isMypageOpen
-                        ? 'flex flex-col absolute whitespace-nowrap top-[2rem] right-[-1rem] z-50 bg-black px-3 py-2 rounded-b-lg'
+                        ? 'flex-column absolute whitespace-nowrap top-[2rem] right-[-1rem] z-50 bg-black px-3 py-2 mt-3 rounded-b-lg'
                         : 'hidden'
                     } `}
                   >

@@ -1,17 +1,15 @@
-import React from 'react'
-
 export default function MovieCard({ movie }) {
   return (
-    <div className='gray-border rounded-lg flex flex-col justify-center'>
+    <div className='gray-border rounded-lg flex-column justify-center'>
       <div className='relative aspect-[2/3] overflow-hidden rounded-t-lg group'>
         {movie.poster_path ? (
           <img
-            className='w-full h-full object-cover group-hover:brightness-50 transition'
+            className='size-full object-cover group-hover:brightness-50 transition'
             alt={`${movie.title} 포스터 이미지`}
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           />
         ) : (
-          <div className='w-full h-full text-center bg-white flex items-center justify-center group-hover:brightness-50 transition'>
+          <div className='size-full text-center bg-white flex-center group-hover:brightness-50 transition'>
             No Image
           </div>
         )}

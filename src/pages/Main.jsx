@@ -1,19 +1,20 @@
-import MovieCard from '@components/MovieCard'
 import { Link } from 'react-router-dom'
-import { MovieCardSkeleton } from '@components/SkeletonUI'
+import MovieCard from '@components/MovieCard'
 import ImageSlide from '@components/ImageSlide'
+import { MovieCardSkeleton } from '@components/SkeletonUI'
+import { ImageSlideSkeleton } from '@components/SkeletonUI'
 import useFetch from '@hooks/useFetch'
-import { ImageSlideSkeleton } from '../components/SkeletonUI'
+import { fetchMain } from '@api/fetchURL'
 
 export default function Main() {
   const { data, loading } = useFetch({
-    url: 'https://api.themoviedb.org/3/movie/popular?language=ko&include_adult=false&page=1&region=KR',
+    query: fetchMain,
   })
   const movie = data?.results || []
 
   return (
     <>
-      <div className='w-full h-full'>
+      <div className='size-full flex-column'>
         {loading ? <ImageSlideSkeleton /> : <ImageSlide movie={movie} />}
         <div className='list-container'>
           {loading

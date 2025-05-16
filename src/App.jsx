@@ -1,4 +1,3 @@
-import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { useSupabaseAuth } from './supabase'
 import { useEffect } from 'react'
@@ -14,8 +13,11 @@ import Mypage from '@pages/Mypage'
 function App() {
   const { getUserInfo } = useSupabaseAuth()
   useEffect(() => {
-    getUserInfo()
-  })
+    const fetchUser = async () => {
+      await getUserInfo()
+    }
+    fetchUser()
+  }, [getUserInfo])
 
   return (
     <>

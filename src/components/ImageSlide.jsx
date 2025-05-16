@@ -53,7 +53,9 @@ export default function ImageSlide({ movie }) {
         {imgs.map((_, index) => (
           <span
             key={index}
-            className={`h-2 w-2 rounded-full ${index === currentImg ? 'bg-black' : 'bg-gray-300'}`}
+            className={`h-2 w-2 rounded-full ${
+              index === currentImg ? 'bg-black dark:bg-gray-300' : 'bg-gray-200 dark:bg-gray-500'
+            }`}
           ></span>
         ))}
       </div>

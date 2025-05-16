@@ -20,7 +20,7 @@ export default function Mypage() {
               className='rounded-full m-auto max-w-40  max-h-40'
             />
           </div>
-          <div className='flex flex-col justify-between py-8'>
+          <div className='flex-column justify-between py-8'>
             <h3 className='text-2xl font-semibold pb-1 border-b-[1px]'>{user.userName}</h3>
             <p className='pt-1 text-gray-600'>{user.email}</p>
           </div>

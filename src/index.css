@@ -2,11 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .gray-border {
-    border: solid 1px gainsboro;
+@layer base {
+  ul,
+  li,
+  ol {
+    list-style: none;
   }
-  .detail-card {
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  #root {
+    @apply flex-column h-full;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  /* darkmode */
+  body {
+    @apply bg-white text-black dark:bg-gray-900 dark:text-white;
+  }
+}
+
+@layer components {
+  /* 회색 border (+ 다크모드) */
+  .gray-border {
+    @apply border border-gray-300 dark:border-gray-600;
+  }
+
+  /* 다크모드 적용 배경색 */
+  .bg-skin {
+    @apply bg-white dark:bg-gray-800 dark:text-white;
+  }
+
+  /* 그림자 효과 */
+  .filter-shadow {
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
+  }
+
+  /* 리스트 컨테이너 grid로 정렬 */
+  .list-container {
+    @apply w-full max-w-[1000px] grid m-[10px_auto] p-[15px] gap-[15px] justify-items-center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .list-container a {
+    @apply w-full;
+  }
+
+  /* 이미지 슬라이드 이전, 다음 버튼 */
+  .slide-btn {
+    @apply absolute top-1/2 -translate-y-1/2 text-white text-[3em];
+  }
+
+  /* flex */
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-column {
+    @apply flex flex-col;
+  }
+
+  /* Skeleton UI 클래스 */
+  .skeleton-item {
+    @apply bg-gray-300 rounded animate-pulse;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mobile-toggleMenu {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    margin-top: 0.5em;
   }
 }

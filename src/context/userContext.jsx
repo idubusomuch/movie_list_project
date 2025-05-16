@@ -8,12 +8,13 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
   const { getUserInfo } = useSupabaseAuth()
   useEffect(() => {
-    ;(async () => {
+    const fetchUserInfo = async () => {
       const userInfo = await getUserInfo()
       if (userInfo?.user) {
         setUser(userInfo.user)
       }
-    })()
+    }
+    fetchUserInfo()
   }, [])
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
 }

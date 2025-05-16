@@ -92,7 +92,7 @@ export default function Login() {
               onChange={handleChange}
             />
             <Button type={'submit'}>로그인</Button>
-            <div className='flex flex-col space-y-2 py-2 sm:flex-row sm:space-y-0 sm:space-x-2'>
+            <div className='flex-column space-y-2 py-2 sm:flex-row sm:space-y-0 sm:space-x-2'>
               <Button
                 onClick={handleLoginGoogle}
                 bgColor='bg-red-500'

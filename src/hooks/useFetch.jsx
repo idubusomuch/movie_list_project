@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function useFetch({ url, errorNavigate = true }) {
+export default function useFetch({ query, errorNavigate = true }) {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
   const navigate = useNavigate()
-  const API_TOKEN = import.meta.env.VITE_TMDB_API_TOKEN
 
   useEffect(() => {
     setLoading(true)
@@ -13,20 +12,9 @@ export default function useFetch({ url, errorNavigate = true }) {
     setData(null)
 
     const fetchAPI = async () => {
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      }
       try {
-        const response = await fetch(url, options)
-        if (!response.ok) {
-          throw new Error('데이터를 불러오지 못했습니다.')
-        }
-        const data = await response.json()
-        setData(data)
+        const response = await query()
+        setData(response)
       } catch (err) {
         console.error('err', err)
         if (errorNavigate) navigate('/error')
@@ -36,7 +24,7 @@ export default function useFetch({ url, errorNavigate = true }) {
     }
 
     fetchAPI()
-  }, [url, API_TOKEN])
+  }, [query])
 
   return { data, loading }
 }
