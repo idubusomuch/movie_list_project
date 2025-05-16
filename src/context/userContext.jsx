@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useMemo } from 'react'
 import { useSupabaseAuth } from '../supabase'
 import { useContext } from 'react'
 
@@ -6,7 +6,10 @@ const UserContext = createContext(null)
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
+  const value = useMemo(() => ({ user, setUser }), [user])
+
   const { getUserInfo } = useSupabaseAuth()
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       const userInfo = await getUserInfo()
@@ -15,8 +18,9 @@ export function UserProvider({ children }) {
       }
     }
     fetchUserInfo()
-  }, [])
-  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
+  }, [getUserInfo])
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
 export function useUser() {
