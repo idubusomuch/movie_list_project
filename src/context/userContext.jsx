@@ -18,7 +18,7 @@ export function UserProvider({ children }) {
       }
     }
     fetchUserInfo()
-  }, [getUserInfo])
+  }, [])
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
