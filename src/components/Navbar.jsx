@@ -68,7 +68,7 @@ export default function Navbar() {
                 <div className='flex justify-end items-center relative'>
                   <img
                     src={
-                      user.user_metadata?.avatar_url ||
+                      user.user_metadata?.profileImageUrl ||
                       'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295396_1280.png'
                     }
                     alt='avatar'
